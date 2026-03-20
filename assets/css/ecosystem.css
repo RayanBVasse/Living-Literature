@@ -1,0 +1,371 @@
+/* Page palette: Ecosystem */
+
+:root {
+	--page-bg: #f0f3f6;
+	--page-footer: #e6eaee;
+	--page-surface: #f8fafc;
+	--page-surface-strong: #f3f6f9;
+	--page-accent: #5e7489;
+	--page-accent-strong: #4a5d70;
+	--page-accent-soft: rgba(94, 116, 137, 0.14);
+}
+
+body {
+	background: var(--page-bg);
+}
+
+#footer {
+	background-color: var(--page-footer);
+}
+
+a:hover {
+	color: var(--page-accent) !important;
+}
+
+.button {
+	box-shadow: inset 0 0 0 2px rgba(74, 93, 112, 0.45);
+	color: #4f4f4f !important;
+}
+
+.button:hover {
+	color: var(--page-accent) !important;
+	box-shadow: inset 0 0 0 2px var(--page-accent);
+}
+
+.button:active {
+	background-color: var(--page-accent-soft);
+}
+
+.button.primary {
+	background-color: var(--page-accent-strong);
+	box-shadow: none;
+	color: #ffffff !important;
+}
+
+.button.primary:hover {
+	background-color: var(--page-accent);
+}
+
+.button.primary:active {
+	background-color: var(--page-accent-strong);
+}
+
+.home-card {
+	background: var(--page-surface);
+}
+
+.book-item {
+	background: var(--page-surface-strong);
+}
+
+.home-hero.ecosystem-hero {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	gap: 1.35rem;
+	margin: 1rem auto 3.6rem auto;
+}
+
+.ecosystem-hero-copy {
+	max-width: 60rem;
+}
+
+.ecosystem-hero-copy h1 {
+	margin-bottom: 0.75rem;
+}
+
+.ecosystem-hero-copy p {
+	max-width: 50rem;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.ecosystem-map-hero {
+	width: 100%;
+	max-width: 980px;
+	border: 1px solid rgba(88, 88, 88, 0.2);
+	border-radius: 1rem;
+	background: #f6f1e7;
+	box-shadow: 0 0.65rem 1.4rem rgba(52, 67, 82, 0.12);
+	overflow: visible;
+	padding: 0.35rem;
+}
+
+.ecosystem-map-hero svg {
+	display: block;
+	width: 100%;
+	height: auto;
+	margin: 0 auto;
+	overflow: visible;
+}
+
+.ecosystem-node {
+	cursor: pointer;
+}
+
+.ecosystem-node rect {
+	transition: filter 0.18s ease;
+}
+
+.ecosystem-node:hover rect {
+	filter: brightness(0.93);
+}
+
+.ecosystem-pulse {
+	animation: ecosystemPulse 3s ease-in-out infinite;
+}
+
+.ecosystem-map-legend {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.9rem 1.35rem;
+	justify-content: center;
+	margin-top: 0.2rem;
+}
+
+.ecosystem-legend-item {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	font-size: 0.75rem;
+	color: #5a4a3a;
+	letter-spacing: 0.04em;
+}
+
+.ecosystem-legend-dot {
+	width: 10px;
+	height: 10px;
+	border-radius: 2px;
+	flex-shrink: 0;
+}
+
+.legend-books {
+	background: #FAEEDA;
+	border: 1px solid #854F0B;
+}
+
+.legend-platform {
+	background: #EEEDFE;
+	border: 1px solid #534AB7;
+}
+
+.legend-research {
+	background: #E1F5EE;
+	border: 1px solid #0F6E56;
+}
+
+.legend-applied {
+	background: #FAECE7;
+	border: 1px solid #993C1D;
+}
+
+.legend-essays {
+	background: #F1EFE8;
+	border: 1px solid #5F5E5A;
+}
+
+.ecosystem-tooltip {
+	position: fixed;
+	background: #1e1610;
+	color: #f0ece4;
+	font-size: 0.74rem;
+	padding: 0.5rem 0.75rem;
+	border-radius: 4px;
+	pointer-events: none;
+	opacity: 0;
+	transition: opacity 0.15s ease;
+	max-width: 240px;
+	line-height: 1.5;
+	z-index: 1000;
+}
+
+.ecosystem-tooltip.visible {
+	opacity: 1;
+}
+
+@keyframes ecosystemPulse {
+	0%, 100% {
+		opacity: 0.6;
+	}
+	50% {
+		opacity: 1;
+	}
+}
+
+.ecosystem-interactive {
+	padding: 2.4rem 1.4rem;
+	border: 1px solid rgba(74, 93, 112, 0.2);
+	border-radius: 1rem;
+	background: #e8eef5;
+}
+
+.ecosystem-tabs {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	gap: 0.8rem;
+	margin-top: 1.35rem;
+}
+
+.ecosystem-tab {
+	padding: 0.85rem 0.8rem;
+	border: 1px solid rgba(74, 93, 112, 0.3);
+	border-radius: 0.75rem;
+	background: #f4f7fb;
+	color: #3f4f5f;
+	font-size: 0.72rem;
+	font-weight: 800;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	line-height: 1.2;
+	white-space: normal;
+	cursor: pointer;
+	transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.ecosystem-tab:focus-visible {
+	background: #e7edf5;
+	box-shadow: 0 0 0 2px rgba(74, 93, 112, 0.2);
+	outline: none;
+}
+
+.ecosystem-tab.is-active {
+	background: #4a5d70;
+	color: #ffffff;
+	border-color: #4a5d70;
+}
+
+.ecosystem-panels {
+	display: grid;
+	gap: 1rem;
+	margin-top: 1.2rem;
+}
+
+.ecosystem-panel {
+	padding: 1.35rem 1.3rem;
+	border-radius: 0.9rem;
+	border: 1px solid rgba(88, 88, 88, 0.18);
+	background: #f8fafc;
+}
+
+.ecosystem-panel.is-active {
+	animation: ecoFadeIn 180ms ease-out;
+}
+
+.ecosystem-panel h3 {
+	margin-bottom: 0.55rem;
+	letter-spacing: 0.08em;
+	font-size: 1.2rem;
+}
+
+.ecosystem-panel p {
+	margin-bottom: 0.85rem;
+	font-size: 0.96rem;
+	line-height: 1.5;
+}
+
+.eco-mini-grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 0.8rem;
+	margin-top: 0.8rem;
+}
+
+.eco-mini-grid-four {
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.eco-mini-grid-two {
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.eco-mini-card {
+	padding: 0.8rem 0.85rem;
+	border-radius: 0.7rem;
+	border: 1px solid rgba(88, 88, 88, 0.15);
+	background: rgba(255, 255, 255, 0.72);
+}
+
+.eco-mini-card h4 {
+	margin: 0 0 0.35rem 0;
+	font-size: 0.8rem;
+	letter-spacing: 0.08em;
+}
+
+.eco-mini-card p {
+	margin: 0;
+	font-size: 0.88rem;
+	line-height: 1.45;
+}
+
+.panel-books {
+	background: #f8f3e8;
+	border-color: rgba(143, 112, 63, 0.24);
+}
+
+.panel-research {
+	background: #eaf0f7;
+	border-color: rgba(73, 102, 138, 0.24);
+}
+
+.panel-applied {
+	background: #ebf4f0;
+	border-color: rgba(62, 115, 96, 0.24);
+}
+
+.panel-living {
+	background: #f5ecf6;
+	border-color: rgba(114, 82, 131, 0.24);
+}
+
+.panel-essays {
+	background: #f6ece8;
+	border-color: rgba(133, 91, 75, 0.24);
+}
+
+.panel-indices {
+	background: #f0edf7;
+	border-color: rgba(74, 63, 107, 0.26);
+}
+
+.panel-compact {
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+}
+
+.panel-compact h3 {
+	font-size: 1.04rem;
+}
+
+@keyframes ecoFadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(6px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@media screen and (max-width: 1080px) {
+	.eco-mini-grid-four {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media screen and (max-width: 780px) {
+	.eco-mini-grid,
+	.eco-mini-grid-two {
+		grid-template-columns: 1fr;
+	}
+
+	.ecosystem-interactive {
+		padding: 1.8rem 1rem;
+	}
+
+	.ecosystem-map-hero {
+		max-width: 100%;
+		padding: 0.2rem;
+	}
+}
