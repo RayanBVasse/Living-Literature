@@ -10,5 +10,9 @@ _server files/
 .DS_Store
 Thumbs.db
 
+# Local-only JS files (contain hardcoded API keys, never deploy)
+assets/js/selene.js
+assets/js/prometheus.js
+
 # Local dev only
 *.log
