@@ -1,0 +1,325 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Fourth Culture | Living Literature</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/books.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			.demo-context {
+				margin: 0;
+				padding: 0.9rem 1rem;
+				border: 1px solid rgba(88, 88, 88, 0.2);
+				border-radius: 0.6rem;
+				background: rgba(247, 246, 242, 0.7);
+			}
+
+			.demo-context h3 {
+				margin-bottom: 0.5rem;
+				letter-spacing: 0.08em;
+			}
+
+			.demo-context p {
+				margin-bottom: 0.55rem;
+			}
+
+			.fc-dual-panels {
+				display: grid;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: 1rem;
+			}
+
+			.fc-feature-panel {
+				padding: 1rem 1.05rem;
+				border: 1px solid rgba(88, 88, 88, 0.2);
+				border-radius: 0.65rem;
+			}
+
+			.fc-feature-panel h2 {
+				margin-bottom: 0.45rem;
+				font-size: 0.95rem;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+			}
+
+			.fc-feature-panel p,
+			.fc-feature-panel li {
+				font-size: 0.95rem;
+				line-height: 1.65;
+			}
+
+			.fc-feature-panel ul {
+				margin: 0.35rem 0 0.15rem 1.1rem;
+				padding: 0;
+			}
+
+			.fc-feature-panel li {
+				margin-bottom: 0.4rem;
+			}
+
+			.fc-publications {
+				background: #f0f5fe;
+				border-color: rgba(72, 104, 150, 0.3);
+			}
+
+			.fc-companions {
+				background: #f3effb;
+				border-color: rgba(94, 79, 150, 0.3);
+			}
+
+			.fc-explores {
+				background: #f8f4ee;
+				border-color: rgba(150, 120, 83, 0.28);
+			}
+
+			.fc-booknote {
+				background: #f6f2ea;
+				border-color: rgba(130, 110, 80, 0.28);
+			}
+
+			.fc-role {
+				margin-bottom: 1rem;
+				font-size: 1.03rem;
+			}
+
+			.fc-synopsis-panel,
+			.fc-invite-panel {
+				padding: 1rem 1.05rem;
+				border: 1px solid rgba(88, 88, 88, 0.2);
+				border-radius: 0.7rem;
+				margin: 0.6rem 0 0 0;
+			}
+
+			.fc-synopsis-panel {
+				background: #eef2fb;
+				border-color: rgba(84, 102, 148, 0.3);
+			}
+
+			.fc-invite-panel {
+				background: #eef6f2;
+				border-color: rgba(70, 120, 98, 0.3);
+			}
+
+			.fc-synopsis-panel h2,
+			.fc-invite-panel h2 {
+				margin-bottom: 0.45rem;
+				font-size: 0.95rem;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+			}
+
+			.index-grounding {
+				margin-top: 0.8rem;
+				padding: 1.2rem 1.25rem;
+				border: 1px solid rgba(95, 95, 146, 0.35);
+				border-radius: 0.75rem;
+				background: #f2f1fb;
+				color: #393a4a;
+			}
+
+			.index-grounding h3 {
+				margin-bottom: 0.6rem;
+				font-size: 1.12rem;
+				letter-spacing: 0.06em;
+			}
+
+			.index-grounding h4 {
+				margin: 1.05rem 0 0.45rem 0;
+				font-size: 0.82rem;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+				color: #4c4a85;
+			}
+
+			.index-grounding p,
+			.index-grounding li {
+				font-size: 0.96rem;
+				line-height: 1.7;
+			}
+
+			.index-grounding p {
+				margin-bottom: 0.7rem;
+			}
+
+			.index-grounding ul {
+				margin: 0.4rem 0 0.5rem 1.15rem;
+				padding: 0;
+			}
+
+			.index-grounding li {
+				margin-bottom: 0.45rem;
+			}
+
+			@media screen and (max-width: 900px) {
+				.fc-dual-panels {
+					grid-template-columns: 1fr;
+				}
+			}
+		</style>
+	</head>
+
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-004FGMQ9NL"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'G-004FGMQ9NL');
+	</script>
+
+	<body class="is-preload">
+		<div id="wrapper">
+			<header id="header">
+				<div class="inner">
+					<a href="index.html" class="logo">
+						<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Living Literature</span>
+					</a>
+					<nav>
+						<ul>
+							<li><a href="index.html#current-demos">Try demos</a></li>
+							<li><a href="#menu">Menu</a></li>
+						</ul>
+					</nav>
+				</div>
+			</header>
+
+			<nav id="menu">
+				<h2>Menu</h2>
+				<ul>
+					<li><a href="index.html">Living Literature</a></li>
+					<li><a href="ecosystem.html">Ecosystem</a></li>
+					<li><a href="books.html">Books</a></li>
+					<li><a href="research.html">Research</a></li>
+					<li><a href="applied-systems.html">Applied Systems</a></li>
+					<li><a href="gna/index.html">Global Narrative</a></li>
+					<li><a href="essays.html">Essays</a></li>
+					<li><a href="about.html">About</a></li>
+				</ul>
+			</nav>
+
+			<div id="main">
+				<div class="inner">
+					<section class="books-hero books-hero-layout">
+						<div class="books-hero-copy">
+							<span class="eyebrow">Series Volume</span>
+							<h1>Fourth Culture</h1>
+							<p class="books-subtitle">Identity Without Borders</p>
+							<p class="fc-role"><strong>One-line role:</strong> Examines how living across cultures reshapes identity, belonging, and perception.</p>
+							<div class="books-intro">
+								<p><em>The Fourth Culture</em> expands the project from individual reflection toward a wider social, cultural, and research horizon.</p>
+							</div>
+						</div>
+						<div class="books-hero-art">
+							<img src="images/FC_cover_edition1.jpg" alt="Fourth Culture cover" />
+							<div class="cover-buy-action">
+								<a href="https://www.amazon.co.uk/dp/B0GSXF997C" class="button primary" target="_blank" rel="noopener noreferrer">Buy on Kindle</a>
+							</div>
+						</div>
+					</section>
+
+					<section class="books-section">
+						<article class="fc-synopsis-panel">
+							<h2>Synopsis</h2>
+							<p>What happens when people share language, schools, cities, and digital spaces, yet still remain subtly outside one another? <em>The Fourth Culture</em> argues that a new identity condition is emerging: not simply migrant, not simply local, not simply "third culture," but something more fluid, layered, and emotionally unresolved. This book gives that condition a name. It is written for readers who have lived between geographies, languages, moral systems, and social codes, and for anyone trying to understand why belonging in the modern world so often feels partial, negotiated, and unstable.</p>
+							<p>Grounded in migration research, identity theory, digital culture, and the large Spanish-Latin American corridor, <em>The Fourth Culture</em> moves from concept to lived reality. It shows why the old models explain only fragments, while Fourth Culture names the pattern itself: fluent yet foreign, connected yet unseen. It also opens toward the future through the Global Atlas, a proposed AI-assisted longitudinal observatory designed to track how identity evolves across time, cultures, and digital environments. This is the series volume that expands the project from the individual to the social world, and from theory to a research and platform horizon.</p>
+						</article>
+					</section>
+
+					<section class="books-section">
+						<article class="fc-invite-panel">
+							<h2>AI / Platform / Research Invite</h2>
+							<p>Unlike <em>Urban Monasticism</em> and <em>Persona Continuum</em>, this book does not currently have a reader-facing demo. Its extension lies instead in the research and platform vision behind it: the <a href="gna/index.html">Global Narrative Atlas</a>, an AI-assisted, longitudinal, multilingual observatory of people living between cultures, languages, and digital worlds.</p>
+							<p>The model is designed to move beyond one-off surveys and static labels, toward a living map of identity in motion. Readers, researchers, educators, and potential collaborators who see the value of such a system are invited to follow its development through <a href="living-literature.html">Living Literature</a>.</p>
+						</article>
+					</section>
+
+					<section class="books-section">
+						<article class="fc-feature-panel fc-publications">
+							<h2>Associated Author Publications</h2>
+							<ul>
+								<li><a href="https://doi.org/10.5281/zenodo.19046054" target="_blank" rel="noopener noreferrer">Fourth Culture Identity: A Framework Proof-of-Concept for AI-Assisted Integration in Culturally Hybrid Lives (Zenodo)</a></li>
+								<li><a href="https://doi.org/10.5281/zenodo.19004909" target="_blank" rel="noopener noreferrer">AI-assisted identity integration for Fourth Culture individuals (Zenodo)</a></li>
+							</ul>
+						</article>
+					</section>
+
+					<section class="books-section">
+						<div class="demo-context series-disclaimer-panel">
+							<h3>Series disclaimer</h3>
+							<p><em>Smudged Edges of Self-Identity</em> is a reflective inquiry series; all indices and AI companions are non-clinical tools, not psychometric instruments, and not therapeutic services.</p>
+							<p><a href="disclaimer.html">Read full disclaimer</a></p>
+						</div>
+					</section>
+
+					<section class="books-section">
+						<h2>CCI details</h2>
+						<section class="index-grounding" aria-labelledby="cci-grounding-title">
+							<h3 id="cci-grounding-title">CCI | Cross-Cultural Index</h3>
+							<p>An experimental reflection index for understanding belonging across more than one cultural world: heritage, host culture, language, and identity compatibility. It is literature-informed but not a validated acculturation test. The framing draws on major acculturation theory, bidimensional models such as the Vancouver Index of Acculturation, and bicultural identity integration research.</p>
+
+							<h4>Why it was included</h4>
+							<p>Several books in the Living Literature ecosystem deal with migration, hybridity, multilingual life, and belonging that does not resolve neatly into one category. The CCI was included to give readers a structured way to reflect on cultural layering without forcing them into simplistic binaries like "assimilated" or "not assimilated." It is meant to make complex cross-cultural experience more discussable across reading, reflection, and AI-assisted dialogue.</p>
+
+							<h4>What problem it tries to capture</h4>
+							<p>Most everyday language for culture is too blunt. It misses the fact that someone can be highly connected to a heritage culture and also highly adapted to a host culture, or feel culturally competent in two worlds while still experiencing deep identity tension between them. The CCI tries to capture that middle terrain: layered belonging, cultural compatibility, and the difference between external adaptation and internal integration.</p>
+
+							<h4>Related concepts in the literature</h4>
+							<ul>
+								<li>Acculturation as multidimensional: classic work shows that adaptation to a new culture is not one simple continuum, but can involve integration, assimilation, separation, or marginalization.</li>
+								<li>Bidimensional cultural orientation: the Vancouver Index of Acculturation and related work assess heritage orientation and mainstream orientation separately rather than as opposites.</li>
+								<li>Bicultural Identity Integration: research shows that two cultural identities may be experienced as compatible and blended, or as oppositional and in conflict.</li>
+								<li>Third Culture / cross-cultural upbringing: the TCK tradition provides a widely recognized descriptive framework for lives shaped by mobility, mixed cultural codes, and diffuse belonging.</li>
+							</ul>
+
+							<h4>How this index differs</h4>
+							<p>The CCI is not a formal acculturation inventory, not a validated intercultural competence scale, and not a diagnostic measure of adaptation. It is a reader-facing synthesis. Its purpose is to translate a broad field of cross-cultural theory into a simpler reflective structure for people living culturally layered lives. Compared with many existing measures, it puts more emphasis on lived hybridity, internal compatibility, and longitudinal self-understanding rather than only static group comparison.</p>
+
+							<h4>Current status</h4>
+							<p>Exploratory. Literature-informed. Provisional. The CCI should be understood as an experimental reflective scaffold, not a validated psychometric instrument or diagnostic tool. Formal measurement claims would require dedicated validation work, which this index does not yet have.</p>
+
+							<h4>Interpretation note</h4>
+							<p>This index is intended to support reflection and structured dialogue. It should not be used to infer clinical status, trauma, acculturative pathology, or any definitive judgment about identity health.</p>
+
+							<p>The frameworks and indices in this book are not invented from scratch. They are built on the work of the following researchers - simplified and made interactive for readers who deserve the same self-understanding as any psychology graduate, without needing to read the primary literature themselves.</p>
+							<h4>Selected references</h4>
+							<ul>
+								<li>Berry, J. W. (1997). Immigration, acculturation, and adaptation. <em>Applied Psychology, 46</em>(1), 5-34.</li>
+								<li>Ryder, A. G., Alden, L. E., &amp; Paulhus, D. L. (2000). Is acculturation unidimensional or bidimensional? A head-to-head comparison in the prediction of personality, self-identity, and adjustment. <em>Journal of Personality and Social Psychology, 79</em>(1), 49-65.</li>
+								<li>Benet-Martinez, V., &amp; Haritatos, J. (2005). Bicultural identity integration: Components and psychosocial antecedents. <em>Journal of Personality, 73</em>(4), 1015-1050.</li>
+								<li>Pollock, D. C., Van Reken, R. E., &amp; Pollock, M. V. (2009). <em>Third Culture Kids: Growing Up Among Worlds</em>. Nicholas Brealey.</li>
+							</ul>
+						</section>
+					</section>
+
+					<section class="books-section">
+						<h2>Continue Navigation</h2>
+						<div class="page-links">
+							<a href="https://www.amazon.co.uk/dp/B0GSXF997C" class="button" target="_blank" rel="noopener noreferrer">View on Kindle</a>
+							<a href="books.html" class="button primary">Back to Books</a>
+							<a href="index.html" class="button">Return to Living Literature</a>
+						</div>
+					</section>
+				</div>
+			</div>
+
+			<footer id="footer">
+				<div class="inner">
+					<ul class="copyright legal-footer">
+						<li>&copy; 2026 Living Literature / Rayan B. Vasse. All rights reserved.</li>
+						<li class="legal-links"><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Use</a> | <a href="disclaimer.html">Disclaimer</a></li>
+						<li>Living Literature is an independent publishing and research platform.</li>
+						<li>Content on this site is for reflective and educational purposes only.</li>
+						<li>Not a clinical, therapeutic, or diagnostic service.</li>
+					</ul>
+				</div>
+			</footer>
+		</div>
+
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+	</body>
+</html>

@@ -1,0 +1,14 @@
+# Private/sensitive files
+.private/
+_private/
+_server files/
+
+# Claude Code internals
+.claude/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local dev only
+*.log

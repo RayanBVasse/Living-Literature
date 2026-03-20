@@ -1,0 +1,381 @@
+﻿<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Persona Continuum Demo | Living Literature</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			body {
+				background: #eff3f9;
+			}
+
+			#footer {
+				background-color: #e5ebf2;
+			}
+
+			a:hover {
+				color: #4f7fa8 !important;
+			}
+
+			.button {
+				box-shadow: inset 0 0 0 2px rgba(63, 102, 135, 0.45);
+				color: #4f4f4f !important;
+			}
+
+			.button:hover {
+				color: #4f7fa8 !important;
+				box-shadow: inset 0 0 0 2px #4f7fa8;
+			}
+
+			.button.primary {
+				background-color: #3f6687;
+				box-shadow: none;
+				color: #ffffff !important;
+			}
+
+			.button.primary:hover {
+				background-color: #4f7fa8;
+			}
+
+			.demo-layout {
+				display: grid;
+				grid-template-columns: minmax(180px, 280px) minmax(0, 1fr);
+				gap: 2.5rem;
+				align-items: start;
+			}
+
+			.demo-cover img {
+				width: 100%;
+				max-width: 260px;
+				border-radius: 0.8rem;
+				box-shadow: 0 0.8rem 1.5rem rgba(0, 0, 0, 0.12);
+			}
+
+			.demo-intro h1 {
+				margin-bottom: 0.6em;
+			}
+
+			.pc-subtitle {
+				font-size: 1.2rem;
+				font-style: italic;
+				line-height: 1.55;
+				margin-bottom: 0.8rem;
+				color: #33465a;
+			}
+
+			.pc-role {
+				margin-bottom: 1rem;
+				font-size: 1.03rem;
+			}
+
+			.pc-hook-panel,
+			.pc-invite-panel {
+				margin: 1rem 0 1rem 0;
+				padding: 1rem 1.05rem;
+				border: 1px solid rgba(88, 88, 88, 0.2);
+				border-radius: 0.7rem;
+			}
+
+			.pc-hook-panel {
+				background: #eaf0f8;
+				border-color: rgba(63, 102, 135, 0.25);
+			}
+
+			.pc-invite-panel {
+				background: #eef3fb;
+				border-color: rgba(70, 94, 130, 0.24);
+			}
+
+			.pc-hook-panel h3,
+			.pc-invite-panel h3 {
+				margin-bottom: 0.6rem;
+				letter-spacing: 0.09em;
+				font-size: 0.9rem;
+			}
+
+			.demo-intro p {
+				margin-bottom: 0.9em;
+			}
+
+			.demo-prompts {
+				margin: 0.6rem 0 1.4rem 1.2rem;
+				padding: 0;
+			}
+
+			.demo-prompts li {
+				margin-bottom: 0.5rem;
+			}
+
+			.demo-context {
+				margin: 1rem 0 1rem 0;
+				padding: 0.9rem 1rem;
+				border: 1px solid rgba(88, 88, 88, 0.2);
+				border-radius: 0.6rem;
+				background: rgba(247, 246, 242, 0.7);
+			}
+
+			.demo-context h3 {
+				margin-bottom: 0.5rem;
+				letter-spacing: 0.08em;
+			}
+
+			.demo-context p {
+				margin-bottom: 0.55rem;
+			}
+
+			.demo-indices {
+				margin: 0.5rem 0 0.25rem 1.1rem;
+			}
+
+			.demo-form {
+				margin-top: 1.1rem;
+			}
+
+			.demo-form input[type="text"] {
+				margin-bottom: 0.7rem;
+			}
+
+			.crisis-banner {
+				border-color: rgba(79, 127, 168, 0.38);
+				background: #f4f8fd;
+			}
+
+			.ai-response {
+				margin-top: 1rem;
+				padding: 1rem 1.1rem;
+				min-height: 88px;
+				border: 1px solid rgba(88, 88, 88, 0.24);
+				border-radius: 0.6rem;
+				background: #f7f6f2;
+				font-style: italic;
+				line-height: 1.6;
+				white-space: pre-wrap;
+			}
+
+			.index-grounding {
+				margin-top: 1.8rem;
+				padding: 1.2rem 1.25rem;
+				border: 1px solid rgba(63, 102, 135, 0.34);
+				border-radius: 0.75rem;
+				background: #edf3fb;
+				color: #2f3f4d;
+			}
+
+			.index-grounding h3 {
+				margin-bottom: 0.6rem;
+				font-size: 1.12rem;
+				letter-spacing: 0.06em;
+			}
+
+			.index-grounding h4 {
+				margin: 1.05rem 0 0.45rem 0;
+				font-size: 0.82rem;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+				color: #31506f;
+			}
+
+			.index-grounding p,
+			.index-grounding li {
+				font-size: 0.96rem;
+				line-height: 1.7;
+			}
+
+			.index-grounding p {
+				margin-bottom: 0.7rem;
+			}
+
+			.index-grounding ul {
+				margin: 0.4rem 0 0.5rem 1.15rem;
+				padding: 0;
+			}
+
+			.index-grounding li {
+				margin-bottom: 0.45rem;
+			}
+
+			.demo-intro .actions {
+				margin-top: 1.2rem;
+			}
+
+			@media screen and (max-width: 900px) {
+				.demo-layout {
+					grid-template-columns: 1fr;
+					gap: 1.5rem;
+				}
+
+				.demo-cover img {
+					max-width: 220px;
+				}
+			}
+		</style>
+	</head>
+
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-004FGMQ9NL"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	  gtag('config', 'G-004FGMQ9NL');
+	</script>
+
+	<body class="is-preload">
+		<div id="wrapper">
+
+			<header id="header">
+				<div class="inner">
+					<a href="index.html" class="logo">
+						<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Living Literature</span>
+					</a>
+					<nav>
+	<ul>
+		<li><a href="index.html#current-demos">Try demos</a></li>
+		<li><a href="#menu">Menu</a></li>
+	</ul>
+</nav>
+				</div>
+			</header>
+
+			<nav id="menu">
+	<h2>Menu</h2>
+	<ul>
+		<li><a href="index.html">Living Literature</a></li>
+		<li><a href="ecosystem.html">Ecosystem</a></li>
+		<li><a href="books.html">Books</a></li>
+		<li><a href="research.html">Research</a></li>
+		<li><a href="applied-systems.html">Applied Systems</a></li>
+		<li><a href="gna/index.html">Global Narrative</a></li>
+		<li><a href="essays.html">Essays</a></li>
+		<li><a href="about.html">About</a></li>
+	</ul>
+</nav>
+
+			<div id="main">
+				<div class="inner">
+					<section class="crisis-banner" role="note" aria-label="Crisis support notice">
+						<p><strong>Please note:</strong> Prometheus is a reflective reading companion, not a counsellor or therapist. If you are in distress or need support, please reach out to a crisis service: UK: Samaritans 116 123 | US: 988 | International: findahelpline.com</p>
+						<p>This tool does not store your responses or retain personal data between sessions.</p>
+					</section>
+
+					<section class="demo-layout">
+						<div class="demo-cover">
+							<img src="images/PC_cover_edition2.jpg" alt="Persona Continuum cover" />
+							<div class="cover-buy-action">
+								<a href="https://www.amazon.co.uk/dp/B0GRJM1C5V" class="button primary" target="_blank" rel="noopener noreferrer">Buy on Kindle</a>
+							</div>
+						</div>
+
+						<div class="demo-intro">
+							<h1>The Persona Continuum</h1>
+							<p class="pc-subtitle">Exploring Synthetic Self-Emulation and the Co-Shaping of Identity</p>
+							<p class="pc-role"><strong>One-line role:</strong> Reveals how we shift between roles and masks, and what those shifts cost us.</p>
+
+							<section class="pc-hook-panel">
+								<h3>Synopsis</h3>
+								<p>Most people already know the feeling: you are one version of yourself at work, another with family, another with old friends, and another again when no one is watching. <em>The Persona Continuum</em> takes that ordinary experience seriously. It argues that the self is not singular and fixed, but fluid, adaptive, and continuously shaped by context, performance, memory, and interaction. Rather than treating these shifts as fakery or pathology, the book explores them as clues to how identity actually works.</p>
+								<p>Blending psychology, philosophy, lived case material, and emerging AI interaction, <em>The Persona Continuum</em> examines how modern people perform, negotiate, and sometimes lose themselves across roles, platforms, and relationships. It is one of the most conceptually accessible and practically interesting books in the series: a guide to understanding persona shifts, synthetic co-authorship, and the subtle way technology now participates in shaping who we become.</p>
+							</section>
+
+							<section class="pc-invite-panel">
+								<h3>AI / prototype invite</h3>
+								<p>A limited Living Literature prototype linked to this book is available at <a href="index.html#current-demos">living-literature.org</a>, where readers can begin exploring persona questions through guided interaction. The current version demonstrates the core idea: that a book can continue as reflective conversation. The fuller system described in the book, including deeper persona mapping, structured reflection, and continuity across interactions, remains under development.</p>
+							</section>
+							<h2>The Persona Continuum demo</h2>
+							<p>You can ask up to three questions in this session.</p>
+
+							<h4>Good sample questions to start with</h4>
+							<ul class="demo-prompts">
+								<li>"Why do I feel like a different person in different environments?"</li>
+								<li>"How do I know when adaptation is healthy versus self-loss?"</li>
+							</ul>
+
+							<div class="demo-form">
+								<input type="text" id="userInput" placeholder="Enter your reflection...and click 'Talk to Prometheus'" />
+								<button onclick="submitPrometheusInput()">Talk to Prometheus</button>
+							</div>
+
+							<div id="responseArea" class="ai-response">I'm Prometheus - a reflective companion grounded in the themes of The Persona Continuum. I'm an AI, not a therapist or counsellor. I don't retain memory between our conversations, and I don't know you as an individual. What I can do is think with you about the ideas in this book. If anything we discuss brings up something difficult, please consider speaking with someone who can actually support you. Ready when you are.</div>
+							<p class="disclaimer">Note: Demo sessions are intentionally limited to 3 questions.</p>
+
+							<div class="demo-context series-disclaimer-panel">
+								<h3>Series disclaimer</h3>
+								<p><em>Smudged Edges of Self-Identity</em> is a reflective inquiry series; all indices and AI companions are non-clinical tools, not psychometric instruments, and not therapeutic services.</p>
+								<p><a href="disclaimer.html">Read full disclaimer</a></p>
+							</div>
+
+							<section class="index-grounding" aria-labelledby="pfi-grounding-title">
+								<h3 id="pfi-grounding-title">PFI | Persona Fluidity Index</h3>
+								<p>An experimental reflection index for understanding how your self-presentation shifts across roles and settings, and whether that flexibility feels adaptive or fragmenting. It is literature-informed but not a validated psychological test. The framing draws on classic work on self-presentation, self-monitoring, self-concept clarity, and the "divided self."</p>
+
+								<h4>Why it was included</h4>
+								<p>Several books in the Living Literature ecosystem treat identity not as a single fixed core, but as something performed, managed, revised, and negotiated across situations. The PFI was included to give readers a structured way to reflect on that movement: not just whether they "change," but how, where, and at what psychological cost or benefit.</p>
+
+								<h4>What problem it tries to capture</h4>
+								<p>Most people know the feeling of being somewhat different at work, with friends, in family settings, online, or in private. But ordinary language does a poor job distinguishing healthy flexibility from role strain, impression management from self-loss, or contextual adaptation from a divided self. The PFI tries to capture that middle terrain. It is especially concerned with the tension between fluidity and coherence.</p>
+
+								<h4>Related concepts in the literature</h4>
+								<ul>
+									<li>Impression management / performed self: classic sociological work treats social life as structured self-presentation, where people manage how they appear in different settings.</li>
+									<li>Self-monitoring: some people naturally adapt their expressive behavior more strongly to context than others.</li>
+									<li>Self-concept clarity: research distinguishes people with a relatively clear, stable sense of self from those whose self-beliefs feel more uncertain or inconsistent.</li>
+									<li>Self-concept differentiation: role-based differences in self-description can sometimes be adaptive, but in other cases they relate to poorer adjustment when the self becomes too divided across roles.</li>
+								</ul>
+
+								<h4>How this index differs</h4>
+								<p>The PFI is not a formal personality inventory, not a validated self-monitoring scale, and not a diagnostic measure of identity disturbance. It is a reader-facing synthesis. Its purpose is to translate a complex area of theory into a simpler reflective pathway that can be revisited across dialogue, book engagement, and AI-assisted interpretation. It emphasizes not just context-switching, but the reader's felt relationship to that switching: whether it feels strategic, natural, alienating, or destabilizing.</p>
+
+								<h4>Current status</h4>
+								<p>Exploratory. Literature-informed. Provisional. The PFI should be understood as an experimental reflective scaffold, not a validated psychometric instrument or diagnostic tool. Formal claims about measurement require dedicated validation evidence, which this index does not yet have.</p>
+
+								<h4>Interpretation note</h4>
+								<p>This index is intended to support reflection and structured dialogue. It should not be used to infer clinical status, personality pathology, or mental health diagnosis.</p>
+
+								<p>The frameworks and indices in this book are not invented from scratch. They are built on the work of the following researchers - simplified and made interactive for readers who deserve the same self-understanding as any psychology graduate, without needing to read the primary literature themselves.</p>
+								<h4>Selected references</h4>
+								<ul>
+									<li>Goffman, E. (1959). <em>The presentation of self in everyday life</em>. New York, NY: Doubleday.</li>
+									<li>Snyder, M. (1974). Self-monitoring of expressive behavior. <em>Journal of Personality and Social Psychology, 30</em>(4), 526-537.</li>
+									<li>Campbell, J. D., Trapnell, P. D., Heine, S. J., Katz, I. M., Lavallee, L. F., &amp; Lehman, D. R. (1996). Self-concept clarity: Measurement, personality correlates, and cultural boundaries. <em>Journal of Personality and Social Psychology, 70</em>(1), 141-156.</li>
+									<li>Donahue, E. M., Robins, R. W., Roberts, B. W., &amp; John, O. P. (1993). The divided self: Concurrent and longitudinal effects of psychological adjustment and social roles on self-concept differentiation. <em>Journal of Personality and Social Psychology, 64</em>(5), 834-846.</li>
+								</ul>
+							</section>
+
+							<ul class="actions">
+								<li><a href="https://www.amazon.co.uk/dp/B0GRJM1C5V" class="button" target="_blank" rel="noopener noreferrer">View on Kindle</a></li>
+								<li><a href="index.html" class="button primary">Back to Living Literature</a></li>
+								<li><a href="books.html" class="button">Back to Books</a></li>
+							</ul>
+						</div>
+					</section>
+				</div>
+			</div>
+
+			<footer id="footer">
+				<div class="inner">
+					<ul class="copyright legal-footer">
+						<li>&copy; 2026 Living Literature / Rayan B. Vasse. All rights reserved.</li>
+						<li class="legal-links"><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Use</a> | <a href="disclaimer.html">Disclaimer</a></li>
+						<li>Living Literature is an independent publishing and research platform.</li>
+						<li>Content on this site is for reflective and educational purposes only.</li>
+						<li>Not a clinical, therapeutic, or diagnostic service.</li>
+					</ul>
+				</div>
+			</footer>
+		</div>
+
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script src="assets/js/prometheus.js"></script>
+	</body>
+</html>

@@ -1,0 +1,383 @@
+﻿<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Urban Monasticism Demo | Living Literature</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			body {
+				background: #f8f4ea;
+			}
+
+			#footer {
+				background-color: #f0eadc;
+			}
+
+			a:hover {
+				color: #9b7a2f !important;
+			}
+
+			.button {
+				box-shadow: inset 0 0 0 2px rgba(127, 99, 38, 0.45);
+				color: #4f4f4f !important;
+			}
+
+			.button:hover {
+				color: #9b7a2f !important;
+				box-shadow: inset 0 0 0 2px #9b7a2f;
+			}
+
+			.button.primary {
+				background-color: #7f6326;
+				box-shadow: none;
+				color: #ffffff !important;
+			}
+
+			.button.primary:hover {
+				background-color: #9b7a2f;
+			}
+
+			.demo-layout {
+				display: grid;
+				grid-template-columns: minmax(180px, 280px) minmax(0, 1fr);
+				gap: 2.5rem;
+				align-items: start;
+			}
+
+			.demo-cover img {
+				width: 100%;
+				max-width: 260px;
+				border-radius: 0.8rem;
+				box-shadow: 0 0.8rem 1.5rem rgba(0, 0, 0, 0.12);
+			}
+
+			.demo-intro h1 {
+				margin-bottom: 0.6em;
+			}
+
+			.um-subtitle {
+				font-size: 1.2rem;
+				font-style: italic;
+				line-height: 1.55;
+				margin-bottom: 0.8rem;
+				color: #3f3f3f;
+			}
+
+			.um-role {
+				margin-bottom: 1rem;
+				font-size: 1.03rem;
+			}
+
+			.um-hook-panel,
+			.um-invite-panel {
+				margin: 1rem 0 1rem 0;
+				padding: 1rem 1.05rem;
+				border: 1px solid rgba(88, 88, 88, 0.2);
+				border-radius: 0.7rem;
+			}
+
+			.um-hook-panel {
+				background: #f1ece2;
+				border-color: rgba(127, 99, 38, 0.26);
+			}
+
+			.um-invite-panel {
+				background: #eceff5;
+				border-color: rgba(78, 103, 130, 0.26);
+			}
+
+			.um-hook-panel h3,
+			.um-invite-panel h3 {
+				margin-bottom: 0.6rem;
+				letter-spacing: 0.09em;
+				font-size: 0.9rem;
+			}
+
+			.demo-intro p {
+				margin-bottom: 0.9em;
+			}
+
+			.demo-prompts {
+				margin: 0.6rem 0 1.4rem 1.2rem;
+				padding: 0;
+			}
+
+			.demo-prompts li {
+				margin-bottom: 0.5rem;
+			}
+
+			.demo-context {
+				margin: 1rem 0 1rem 0;
+				padding: 0.9rem 1rem;
+				border: 1px solid rgba(88, 88, 88, 0.2);
+				border-radius: 0.6rem;
+				background: rgba(247, 246, 242, 0.7);
+			}
+
+			.demo-context h3 {
+				margin-bottom: 0.5rem;
+				letter-spacing: 0.08em;
+			}
+
+			.demo-context p {
+				margin-bottom: 0.55rem;
+			}
+
+			.demo-indices {
+				margin: 0.5rem 0 0.25rem 1.1rem;
+			}
+
+			.demo-form {
+				margin-top: 1.1rem;
+			}
+
+			.demo-form input[type="text"] {
+				margin-bottom: 0.7rem;
+			}
+
+			.crisis-banner {
+				border-color: rgba(155, 122, 47, 0.4);
+				background: #fbf6ea;
+			}
+
+			.ai-response {
+				margin-top: 1rem;
+				padding: 1rem 1.1rem;
+				min-height: 88px;
+				border: 1px solid rgba(88, 88, 88, 0.24);
+				border-radius: 0.6rem;
+				background: #f7f6f2;
+				font-style: italic;
+				line-height: 1.6;
+				white-space: pre-wrap;
+			}
+
+			.index-grounding {
+				margin-top: 1.8rem;
+				padding: 1.2rem 1.25rem;
+				border: 1px solid rgba(49, 92, 77, 0.35);
+				border-radius: 0.75rem;
+				background: #edf4f0;
+				color: #31413b;
+			}
+
+			.index-grounding h3 {
+				margin-bottom: 0.6rem;
+				font-size: 1.12rem;
+				letter-spacing: 0.06em;
+			}
+
+			.index-grounding h4 {
+				margin: 1.05rem 0 0.45rem 0;
+				font-size: 0.82rem;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+				color: #2b5b4e;
+			}
+
+			.index-grounding p,
+			.index-grounding li {
+				font-size: 0.96rem;
+				line-height: 1.7;
+			}
+
+			.index-grounding p {
+				margin-bottom: 0.7rem;
+			}
+
+			.index-grounding ul {
+				margin: 0.4rem 0 0.5rem 1.15rem;
+				padding: 0;
+			}
+
+			.index-grounding li {
+				margin-bottom: 0.45rem;
+			}
+
+			.demo-intro .actions {
+				margin-top: 1.2rem;
+			}
+
+			@media screen and (max-width: 900px) {
+				.demo-layout {
+					grid-template-columns: 1fr;
+					gap: 1.5rem;
+				}
+
+				.demo-cover img {
+					max-width: 220px;
+				}
+			}
+		</style>
+	</head>
+
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-004FGMQ9NL"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	  gtag('config', 'G-004FGMQ9NL');
+	</script>
+
+	<body class="is-preload">
+		<div id="wrapper">
+
+			<header id="header">
+				<div class="inner">
+					<a href="index.html" class="logo">
+						<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Living Literature</span>
+					</a>
+					<nav>
+	<ul>
+		<li><a href="index.html#current-demos">Try demos</a></li>
+		<li><a href="#menu">Menu</a></li>
+	</ul>
+</nav>
+				</div>
+			</header>
+
+			<nav id="menu">
+	<h2>Menu</h2>
+	<ul>
+		<li><a href="index.html">Living Literature</a></li>
+		<li><a href="ecosystem.html">Ecosystem</a></li>
+		<li><a href="books.html">Books</a></li>
+		<li><a href="research.html">Research</a></li>
+		<li><a href="applied-systems.html">Applied Systems</a></li>
+			<li><a href="gna/index.html">Global Narrative</a></li>
+		<li><a href="essays.html">Essays</a></li>
+		<li><a href="about.html">About</a></li>
+	</ul>
+</nav>
+
+			<div id="main">
+				<div class="inner">
+					<section class="crisis-banner" role="note" aria-label="Crisis support notice">
+						<p><strong>Please note:</strong> Selene is a reflective reading companion, not a counsellor or therapist. If you are in distress or need support, please reach out to a crisis service: UK: Samaritans 116 123 | US: 988 | International: findahelpline.com</p>
+						<p>This tool does not store your responses or retain personal data between sessions.</p>
+					</section>
+
+					<section class="demo-layout">
+						<div class="demo-cover">
+							<img src="images/UM_cover_edition2.jpg" alt="Urban Monasticism cover" />
+							<div class="cover-buy-action">
+								<a href="https://www.amazon.co.uk/dp/B0GQJD29BK" class="button primary" target="_blank" rel="noopener noreferrer">Buy on Kindle</a>
+							</div>
+						</div>
+
+						<div class="demo-intro">
+							<h1>Urban Monasticism</h1>
+							<p class="um-subtitle">Solitude, AI Companionship, and the Emotional Revival of a New Self</p>
+							<p class="um-role"><strong>One-line role:</strong> Explores how a person learns to be alone without feeling incomplete.</p>
+
+							<section class="um-hook-panel">
+								<h3>Synopsis</h3>
+								<p>Modern life offers constant contact but very little true reflection. <em>Urban Monasticism</em> begins with a simple but unsettling question: what happens when noise, performance, and social obligation no longer feel like life, but like erosion? This book follows the solitary individual not as a failure of belonging, but as someone trying to recover dignity, coherence, and inner order in a distracted world.</p>
+								<p>Part reflective essay, part fictionalized biography, part philosophical provocation, <em>Urban Monasticism</em> explores solitude, emotional fatigue, performative connection, and the strange usefulness of AI dialogue as a mirror for the self. It is one intimate entry point in the <em>Smudged Edges of Self</em> series: a book where the reader encounters the possibility that being alone may not be a deficit, but the beginning of a different kind of clarity. This fits the book's own framing of AI as useful reflection rather than consciousness, and of the Living Literature system as a working but limited prototype whose fuller development remains ahead.</p>
+							</section>
+
+							<section class="um-invite-panel">
+								<h3>AI / prototype invite</h3>
+								<p>A limited Living Literature prototype for <em>Urban Monasticism</em> is already live, where readers can enter a short reflective exchange with Selene. The current demo is modest by design: a proof of concept showing how a book can continue through dialogue. The full system described in the book, including deeper continuity, structured pathways, and richer reflective development, remains under active development.</p>
+							</section>
+
+							<section class="um-invite-panel">
+							<h2>Urban Monasticism Demo</h2>
+							<p>You can ask up to three questions in this session.</p>
+
+							<h4>Good example questions to start with</h4>
+							<ul class="demo-prompts">
+								<li>"How do I tell the difference between healing solitude and isolation?"</li>
+								<li>"How can I reconnect with myself when life feels emotionally noisy?"</li>
+							</ul>
+							</section>
+							<div class="demo-form">
+								<input type="text" id="userInput" placeholder="Enter your reflection...then click 'Talk to Selene'" />
+								<button onclick="submitSeleneInput()">Talk to Selene</button>
+							</div>
+
+							<div id="responseArea" class="ai-response">I'm Selene - a reflective companion grounded in the themes of Urban Monasticism. I'm an AI, not a therapist or counsellor. I don't store what you share with me, and I won't remember this conversation next time. I'm here to extend the reflective life of the book - nothing more, nothing less. If you're going through something hard, please reach out to someone who can genuinely help. What's on your mind?</div>
+							<p class="disclaimer">Note: Demo sessions are intentionally limited to 3 questions.</p>
+
+							<div class="demo-context series-disclaimer-panel">
+								<h3>Series disclaimer</h3>
+								<p><em>Smudged Edges of Self-Identity</em> is a reflective inquiry series; all indices and AI companions are non-clinical tools, not psychometric instruments, and not therapeutic services.</p>
+								<p><a href="disclaimer.html">Read full disclaimer</a></p>
+							</div>
+
+							<section class="index-grounding" aria-labelledby="sti-grounding-title">
+								<h3 id="sti-grounding-title">STI | Solitude Tolerance Index</h3>
+								<p>An experimental reflection index for understanding how you experience time alone: when solitude restores you, when it drains you, and what conditions change its meaning. It is literature-informed but not a validated psychological test. The framing draws on research on the benefits of solitude, individual differences in preference for solitude, and the distinction between solitude and loneliness.</p>
+
+								<h4>Why it was included</h4>
+								<p>Several books in the Living Literature ecosystem treat solitude not just as the absence of company, but as a psychological condition with very different meanings depending on agency, context, and emotional state. The STI was included to give readers a simple way to reflect on that distinction and to make solitude-related themes easier to revisit across dialogue, reading, and self-observation over time.</p>
+
+								<h4>What problem it tries to capture</h4>
+								<p>Most people use one word, "alone," for very different experiences: restorative solitude, focused retreat, emotional withdrawal, social exhaustion, grief-based isolation, or loneliness. The STI tries to capture that these are not equivalent states, and that the same person may experience them very differently across life phases or circumstances. That distinction is well supported in the literature, which treats solitude and loneliness as related but not interchangeable constructs.</p>
+
+								<h4>Related concepts in the literature</h4>
+								<ul>
+									<li>Benefits of solitude: solitude has been linked to freedom, creativity, intimacy with the self, and reflection under some conditions.</li>
+									<li>Preference for solitude: people differ in the extent to which they actively prefer and seek time alone.</li>
+									<li>Loneliness vs solitude: loneliness is not simply being alone; it is a distressing perceived gap in social connection with measurable psychological and health consequences.</li>
+									<li>Definitions of solitude: recent work clarifies solitude as a state where one's dominant relationship is with the self, whether physically alone or mentally distanced from others.</li>
+								</ul>
+
+								<h4>How this index differs</h4>
+								<p>The STI is not a clinical loneliness scale and not a formal personality instrument. It is a lighter, reader-facing synthesis designed for reflective use inside a book ecosystem. Its purpose is not to diagnose distress or measure a validated trait, but to help readers notice patterns in how they inhabit solitude and to give AI-assisted dialogue a more structured way to explore those patterns.</p>
+
+								<h4>Current status</h4>
+								<p>Exploratory. Literature-informed. Provisional. The STI should be understood as an experimental reflective scaffold, not a validated psychometric instrument or diagnostic tool. That distinction matters, because formal test-like claims require dedicated validation evidence.</p>
+
+								<h4>Interpretation note</h4>
+								<p>This index is intended to support reflection and structured dialogue. It should not be used to infer clinical status, mental health diagnosis, or treatment need.</p>
+
+								<p>The frameworks and indices in this book are not invented from scratch. They are built on the work of the following researchers - simplified and made interactive for readers who deserve the same self-understanding as any psychology graduate, without needing to read the primary literature themselves.</p>
+								<h4>Selected references</h4>
+								<ul>
+									<li>Long, C. R., &amp; Averill, J. R. (2003). Solitude: An exploration of benefits of being alone. <em>Journal for the Theory of Social Behaviour, 33</em>(1), 21-44.</li>
+									<li>Burger, J. M. (1995). Individual differences in preference for solitude. <em>Journal of Research in Personality, 29</em>(1), 85-108.</li>
+									<li>Hawkley, L. C., &amp; Cacioppo, J. T. (2010). Loneliness matters: A theoretical and empirical review of consequences and mechanisms. <em>Annals of Behavioral Medicine, 40</em>(2), 218-227.</li>
+									<li>Weinstein, N., Nguyen, T. V. T., Hansen, H., &amp; others. (2023). Definitions of solitude in everyday life. <em>Personality and Social Psychology Bulletin</em>.</li>
+								</ul>
+							</section>
+
+							<ul class="actions">
+								<li><a href="https://www.amazon.co.uk/dp/B0GQJD29BK" class="button" target="_blank" rel="noopener noreferrer">View on Kindle</a></li>
+								<li><a href="index.html" class="button primary">Back to Living Literature</a></li>
+								<li><a href="books.html" class="button">Back to Books</a></li>
+							</ul>
+						</div>
+					</section>
+				</div>
+			</div>
+
+			<footer id="footer">
+				<div class="inner">
+					<ul class="copyright legal-footer">
+						<li>&copy; 2026 Living Literature / Rayan B. Vasse. All rights reserved.</li>
+						<li class="legal-links"><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Use</a> | <a href="disclaimer.html">Disclaimer</a></li>
+						<li>Living Literature is an independent publishing and research platform.</li>
+						<li>Content on this site is for reflective and educational purposes only.</li>
+						<li>Not a clinical, therapeutic, or diagnostic service.</li>
+					</ul>
+				</div>
+			</footer>
+		</div>
+
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script src="assets/js/selene.js"></script>
+	</body>
+</html>

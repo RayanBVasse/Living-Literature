@@ -1,0 +1,427 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Reflective Indices | Living Literature</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			body { background: #f5f2eb; color: #2c2c2c; }
+			#footer { background: #efeae0; }
+			.button.primary { background: #2e3a4e; box-shadow: none; color: #fff !important; }
+			.button.primary:hover { background: #39485f; }
+			.button[disabled], .button.disabled { background: #c8c4bc !important; color: #fff !important; box-shadow: none !important; cursor: not-allowed !important; }
+			.eyebrow { color: #888; font-size: .75rem; letter-spacing: .15em; text-transform: uppercase; font-weight: 900; margin-bottom: .8rem; display: inline-block; }
+			.hero { margin: 1rem 0 1.5rem; max-width: 62rem; }
+			.hero p { margin-bottom: .7rem; }
+			.disclaimer-bar { border: 1px solid #e0ddd6; border-radius: 8px; background: #f0ece3; padding: .8rem 1rem; font-size: .9rem; line-height: 1.55; margin-bottom: 1.3rem; }
+			.about-indices { border: 1px solid #e0ddd6; border-radius: 8px; background: #f8f4ec; padding: 1rem 1.05rem; margin-bottom: 1.3rem; }
+			.about-indices h2 { margin: 0 0 .6rem 0; font-size: 1rem; letter-spacing: .12em; text-transform: uppercase; }
+			.about-indices p { margin-bottom: .65rem; font-size: .93rem; line-height: 1.58; }
+			.about-indices p:last-child { margin-bottom: 0; }
+			.stack { display: grid; gap: 1rem; }
+			.panel { border: 1px solid #e0ddd6; border-left: 6px solid #aaa; border-radius: 8px; background: #f9f6f0; padding: 1rem 1.05rem; }
+			.panel h2 { text-transform: none; letter-spacing: .01em; margin: 0 0 .5rem 0; font-size: 1.18rem; }
+			.panel-label { color: #888; font-size: .75rem; letter-spacing: .15em; text-transform: uppercase; font-weight: 900; display: inline-block; margin-bottom: .3rem; }
+			.panel-head { display: flex; justify-content: space-between; gap: .7rem; }
+			.status { min-width: 2rem; height: 2rem; border-radius: 999px; border: 1px solid #d8d4ca; display: inline-flex; align-items: center; justify-content: center; font-size: .95rem; color: #b0a99b; background: #f6f2e9; }
+			.status.done { background: #2e3a4e; color: #fff; border-color: #2e3a4e; }
+			.panel p { margin-bottom: .58rem; }
+			.instruction { font-size: .92rem; font-style: italic; color: #4a4a4a; }
+			.q-list { display: grid; gap: .75rem; margin-top: .6rem; }
+			.q { border: 1px solid #e0ddd6; border-radius: 8px; background: #fcfaf6; padding: .7rem .8rem; }
+			.q-text { margin-bottom: .5rem; font-size: .95rem; line-height: 1.45; }
+			.likert { display: flex; flex-wrap: wrap; gap: .45rem; }
+			.likert label { min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid #d5d1c8; border-radius: 6px; background: #fff; cursor: pointer; font-weight: 700; }
+			.likert input { position: absolute; opacity: 0; pointer-events: none; }
+			.likert input:checked + span { background: #2e3a4e; color: #fff; border-color: #2e3a4e; }
+			.likert .tile { position: relative; }
+			.likert .tile span { min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid #d5d1c8; border-radius: 6px; background: #fff; }
+			select { border: 1px solid #d5d1c8; border-radius: 6px; background: #fff; padding: .65rem .75rem; width: 100%; max-width: 20rem; }
+			.full-note { margin-top: .75rem; padding-top: .72rem; border-top: 1px solid #e0ddd6; font-size: .9rem; }
+			.full-note p { margin-bottom: .45rem; }
+			.free-text { margin-top: .8rem; border: 1px solid #e0ddd6; border-radius: 8px; background: #f7f3eb; padding: .75rem .8rem; }
+			.free-text label { display: block; font-size: .9rem; line-height: 1.45; margin-bottom: .5rem; font-weight: 600; }
+			.free-text textarea { width: 100%; min-height: 92px; border: 1px solid #d5d1c8; border-radius: 6px; background: #fff; padding: .65rem .75rem; resize: vertical; color: #2c2c2c; }
+			.panel-sti { border-left-color: #9b8a6e; }
+			.panel-pfi { border-left-color: #6b7fa3; }
+			.panel-cci { border-left-color: #7a9e87; }
+			.panel-bti { border-left-color: #a67c6d; }
+			.panel-toi { border-left-color: #aaa; background: #f1efe9; opacity: .9; }
+			.panel-ipr { border-left-color: #4a3f6b; background: #efedf7; }
+			.ipr-bar { background: #d7d3c9; border-radius: 999px; height: .9rem; overflow: hidden; margin-top: .7rem; }
+			.ipr-bar span { display: block; width: 80%; height: 100%; background: #4a3f6b; }
+			.hidden { display: none !important; }
+			.notify-wrap { display: flex; gap: .5rem; align-items: center; flex-wrap: wrap; }
+			.notify-wrap input { min-width: 16rem; border: 1px solid #d5d1c8; border-radius: 6px; padding: .62rem .75rem; }
+			.notify-msg { font-size: .84rem; color: #585858; }
+			.companion, .cta, .footer-note { margin-top: 1.5rem; border: 1px solid #e0ddd6; border-radius: 8px; background: #f8f5ef; padding: 1rem 1.05rem; }
+			.bottom-nav { margin-top: 1.5rem; border: 1px solid #e0ddd6; border-radius: 8px; background: #f8f5ef; padding: 1rem 1.05rem; }
+			.bottom-nav h2 { margin-bottom: .55rem; }
+			.nav-buttons { display: flex; flex-wrap: wrap; gap: .65rem; }
+			.companion-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8rem; margin-top: .7rem; }
+			.companion-card { border: 1px solid #dcd8d0; border-radius: 8px; background: #fdfbf8; padding: .85rem .95rem; }
+			.companion-card h3 { margin-bottom: .45rem; font-size: .95rem; letter-spacing: .11em; }
+			.meta { font-size: .88rem; color: #5f5f5f; line-height: 1.5; margin-bottom: .65rem; }
+			.analysis { margin-top: .9rem; border: 1px solid #2e3a4e; border-radius: 8px; background: #f7f6f2; padding: .9rem 1rem; }
+			.analysis .label { font-size: .74rem; letter-spacing: .15em; text-transform: uppercase; font-weight: 900; color: #2e3a4e; display: inline-block; margin-bottom: .45rem; }
+			.analysis p { white-space: pre-wrap; line-height: 1.58; margin: 0; }
+			.cta-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .7rem; margin-top: .8rem; }
+			.cta-card { border: 1px solid #ddd8ce; border-radius: 8px; background: #fffdfa; padding: .75rem; }
+			.cta-card h3 { margin-bottom: .4rem; font-size: .8rem; letter-spacing: .13em; }
+			.cta-card.highlight { border-color: #2e3a4e; box-shadow: 0 0 0 2px rgba(46, 58, 78, .15); background: #f2f5fa; }
+			.demo-link { margin-top: .9rem; padding-top: .75rem; border-top: 1px solid #e0ddd6; }
+			.footer-note { background: #f2eee5; font-size: .9rem; line-height: 1.55; }
+			@media screen and (max-width: 980px) {
+				.companion-grid { grid-template-columns: 1fr; }
+				.cta-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+			}
+			@media screen and (max-width: 736px) {
+				.notify-wrap input { min-width: 0; width: 100%; }
+				.cta-grid { grid-template-columns: 1fr; }
+				.button { width: 100%; }
+				.nav-buttons { display: grid; grid-template-columns: 1fr; }
+			}
+		</style>
+	</head>
+	<body class="is-preload">
+		<div id="wrapper">
+			<header id="header">
+				<div class="inner">
+					<a href="index.html" class="logo">
+						<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Living Literature</span>
+					</a>
+					<nav><ul><li><a href="index.html#current-demos">Try demos</a></li><li><a href="#menu">Menu</a></li></ul></nav>
+				</div>
+			</header>
+
+			<nav id="menu">
+				<h2>Menu</h2>
+				<ul>
+					<li><a href="index.html">Living Literature</a></li>
+					<li><a href="ecosystem.html">Ecosystem</a></li>
+					<li><a href="books.html">Books</a></li>
+					<li><a href="research.html">Research</a></li>
+					<li><a href="applied-systems.html">Applied Systems</a></li>
+					<li><a href="gna.html">Global Narrative</a></li>
+					<li><a href="indices.html">Reflective Indices</a></li>
+					<li><a href="essays.html">Essays</a></li>
+					<li><a href="about.html">About</a></li>
+				</ul>
+			</nav>
+
+			<div id="main">
+				<div class="inner">
+					<nav class="ll-breadcrumb" aria-label="Breadcrumb">
+						<a href="index.html">Home</a>
+						<span class="sep">/</span>
+						<span class="current">Reflective Indices</span>
+					</nav>
+					<section class="hero">
+						<span class="eyebrow">Reflective Indices</span>
+						<h1>Your Integrated Persona Reflection - A Partial Profile</h1>
+						<p>Five indices. Four dimensions of identity. One partial picture of who you are right now.</p>
+						<p>This is not a personality test. There is no right profile. These questions are drawn from the Smudged Edges of Self series, where each full index goes much further.</p>
+						<p>What you get here is a taster, enough for Prometheus to say something true.</p>
+					</section>
+
+					<section class="disclaimer-bar">
+						<strong>Nothing entered here is stored, logged, or tracked.</strong><br />
+						No account required. This is a live session only - when you close the page, it is gone.
+						These indices are reflective tools, not clinical instruments.
+					</section>
+
+					<section class="about-indices">
+						<h2>About These Indices</h2>
+						<p>Each index on this page is a structured simplification of established academic frameworks - drawn from peer-reviewed research in psychology, identity development, cross-cultural theory, and behavioral science. The full references are in the corresponding books.</p>
+						<p>These are not clinical instruments. They have not been independently validated in a research trial. They are not diagnostic tools. What they are: carefully designed reflective assessments that translate complex academic constructs into accessible, scoreable language - so that the ideas explored in the Smudged Edges of Self series do not stay theoretical.</p>
+						<p>The gap this fills is real. Academic psychology is rigorous but inaccessible to most people. Self-help is accessible but rarely grounded in science. No existing platform combines book-grounded indices, cross-index profiling, and an AI companion designed around the same conceptual framework. That combination is what Living Literature is building.</p>
+						<p>Rayan B. Vasse holds a PhD in biological sciences and a diploma in software engineering, with over 35 years across biotechnology, international environments, and cross-cultural life. The Smudged Edges of Self series emerged from that intersection - not from a single discipline, but from the specific combination of scientific methodology, lived multicultural experience, and systems thinking that building something like this actually requires.</p>
+						<p>Use these indices as what they are: a mirror, not a verdict.</p>
+					</section>
+
+					<section class="stack">
+						<article class="panel panel-sti">
+							<div class="panel-head"><div><span class="panel-label">Urban Monasticism</span><h2>STI - Solitude Tolerance Index (limited demo)</h2></div><span id="ok-sti" class="status">-</span></div>
+							<p>Solitude is a trainable state. STI measures how well you function when you are alone.</p>
+							<p class="instruction">Rate each statement 1 (not true) to 5 (fully true).</p>
+							<div class="q-list">
+								<div class="q"><div class="q-text">I can sit in silence for 10 minutes without distress.</div><div class="likert" data-key="sti1"></div></div>
+								<div class="q"><div class="q-text">I feel like a full version of myself even when no one is watching.</div><div class="likert" data-key="sti2"></div></div>
+								<div class="q"><div class="q-text">I do not need social feedback to know who I am.</div><div class="likert" data-key="sti3"></div></div>
+							</div>
+							<div class="free-text">
+								<label for="stiReflection">When was the last time you spent time in your own company, what does being alone actually feel like for you right now?</label>
+								<textarea id="stiReflection" placeholder="Optional reflection..."></textarea>
+							</div>
+							<div class="full-note"><p><em>Full STI in <strong>Urban Monasticism</strong>.</em></p><a class="button" href="https://www.amazon.co.uk/dp/B0GQJD29BK" target="_blank" rel="noopener noreferrer">View on Kindle</a></div>
+						</article>
+
+						<article class="panel panel-pfi">
+							<div class="panel-head"><div><span class="panel-label">Persona Continuum</span><h2>PFI - Persona Fluidity Index (limited demo)</h2></div><span id="ok-pfi" class="status">-</span></div>
+							<p>PFI maps how you shift between roles: adaptation, fatigue, integration, and digital performance load.</p>
+							<p class="instruction">Rate each statement 1 (strongly disagree) to 5 (strongly agree).</p>
+							<div class="q-list">
+								<div class="q"><div class="q-text">Adaptive Fluency: Reinvention feels more like freedom than anxiety.</div><div class="likert" data-key="pfiAf"></div></div>
+								<div class="q"><div class="q-text">Performance Fatigue: I have felt identity depletion rather than simple overwork.</div><div class="likert" data-key="pfiPf"></div></div>
+								<div class="q"><div class="q-text">Integration Capacity: I can discuss my different selves without fragmentation.</div><div class="likert" data-key="pfiIc"></div></div>
+								<div class="q"><div class="q-text">Digital Persona Load: I feel pressure to perform an identity online.</div><div class="likert" data-key="pfiDpl"></div></div>
+							</div>
+							<div class="free-text">
+								<label for="pfiReflection">Describe a recent moment when you felt you were performing a version of yourself you did not fully recognise.</label>
+								<textarea id="pfiReflection" placeholder="Optional reflection..."></textarea>
+							</div>
+							<div class="full-note"><p><em>Full PFI in <strong>Persona Continuum</strong>.</em></p><a class="button" href="https://www.amazon.co.uk/dp/B0GRJM1C5V" target="_blank" rel="noopener noreferrer">View on Kindle</a></div>
+						</article>
+
+						<article class="panel panel-cci">
+							<div class="panel-head"><div><span class="panel-label">Fourth Culture</span><h2>CCI - Cross-Cultural Index (limited demo)</h2></div><span id="ok-cci" class="status">-</span></div>
+							<p>CCI maps cultural layering through exposure and lived psychological impact.</p>
+							<p class="instruction">Two factual and two experiential questions.</p>
+							<div class="q-list">
+								<div class="q"><div class="q-text">Countries lived in for at least one year?</div><select data-key="cci1"><option value="">Select</option><option value="0">One</option><option value="1">Two-three</option><option value="2">Four or more</option></select></div>
+								<div class="q"><div class="q-text">Fluent languages?</div><select data-key="cci2"><option value="">Select</option><option value="0">One</option><option value="1">Two</option><option value="2">Three or more</option></select></div>
+								<div class="q"><div class="q-text">No single place fully feels like home?</div><select data-key="cci3"><option value="">Select</option><option value="0">Never</option><option value="1">Sometimes</option><option value="2">Frequently</option></select></div>
+								<div class="q"><div class="q-text">Performing one identity here and another elsewhere?</div><select data-key="cci4"><option value="">Select</option><option value="0">No</option><option value="1">Sometimes</option><option value="2">Often</option></select></div>
+							</div>
+							<div class="free-text">
+								<label for="cciReflection">Which place or culture has shaped you most - and do you feel it belongs to you, or you to it?</label>
+								<textarea id="cciReflection" placeholder="Optional reflection..."></textarea>
+							</div>
+							<div class="full-note"><p><em>Full CCI in <strong>Fourth Culture</strong>.</em></p><a class="button" href="https://www.amazon.co.uk/dp/B0GSXF997C" target="_blank" rel="noopener noreferrer">View on Kindle</a></div>
+						</article>
+
+						<article class="panel panel-bti">
+							<div class="panel-head"><div><span class="panel-label">Belonging Beyond Tribes</span><h2>BTI - Beyond Tribe Index (limited demo)</h2></div><span id="ok-bti" class="status">-</span></div>
+							<p>BTI asks what belonging has cost you, and how you balance connection with self-preservation.</p>
+							<p class="instruction">Rate each statement 1 (strongly disagree) to 5 (strongly agree).</p>
+							<div class="q-list">
+								<div class="q"><div class="q-text">I suppress opinions or feelings to stay accepted in a group.</div><div class="likert" data-key="bti1"></div></div>
+								<div class="q"><div class="q-text">I can connect deeply without needing to fully belong.</div><div class="likert" data-key="bti2"></div></div>
+								<div class="q"><div class="q-text">Fitting in has required becoming someone I did not fully recognize.</div><div class="likert" data-key="bti3"></div></div>
+								<div class="q"><div class="q-text">I know which relationships expand me and which shrink me.</div><div class="likert" data-key="bti4"></div></div>
+							</div>
+							<div class="free-text">
+								<label for="btiReflection">Something you have held back in a group to stay accepted. You do not have to be specific, just honest.</label>
+								<textarea id="btiReflection" placeholder="Optional reflection..."></textarea>
+							</div>
+							<div class="full-note">
+								<p><em>Full BTI is in final preparation for <strong>Belonging Beyond Tribes (limited demo)</strong>.</em></p>
+								<div class="notify-wrap">
+									<input id="btiEmail" type="email" placeholder="Email for BTI release updates" />
+									<button id="btiNotify" type="button" class="button">Notify me</button>
+									<span id="btiMsg" class="notify-msg" aria-live="polite"></span>
+								</div>
+							</div>
+						</article>
+
+						<article class="panel panel-toi">
+							<div class="panel-head"><div><span class="panel-label">The Whole Self with AI</span><h2>TOI - The Fifth Index (currently in development)</h2></div><span class="status">locked</span></div>
+							<p>TOI completes the Integrated Persona Reflection.</p>
+							<p>Where STI maps stillness, PFI maps role fluidity, CCI maps cultural layers, and BTI maps the price of belonging, TOI maps what runs underneath all of them.</p>
+							<p><em>Some things are worth waiting for. TOI is one of them.</em></p>
+							<div class="ipr-bar"><span></span></div>
+							<p style="font-size:.86rem; margin-top:.45rem;">Your IPR is currently 4 of 5 indices complete. TOI pending.</p>
+						</article>
+					</section>
+
+					<section id="iprPanel" class="panel panel-ipr hidden"><span class="panel-label">IPR snapshot</span><h2>Your partial profile summary</h2><p id="iprText"></p></section>
+
+					<section id="companion" class="companion hidden">
+						<h2>Your partial IPR is ready</h2>
+						<p>Choose a companion to interpret your profile. Prometheus reads patterns analytically. Selene reads with emotional depth. One is active today.</p>
+						<div class="companion-grid">
+							<article class="companion-card"><h3>Prometheus</h3><p class="meta">Analytical, pattern-oriented, concept-first.</p><button id="interpretBtn" class="button primary" type="button">Interpret my profile</button></article>
+							<article class="companion-card"><h3>Selene</h3><p class="meta">Intuitive, empathic, resonant.</p><button type="button" class="button disabled" disabled title="Selene will be available in a future update">Coming soon</button><p class="meta" style="margin-top:.55rem;">Currently offline during testing.</p></article>
+						</div>
+						<div id="analysis" class="analysis hidden"><span class="label">Prometheus</span><p id="analysisText">Prometheus is reading your profile...</p></div>
+					</section>
+
+					<section id="ctaSection" class="cta hidden">
+						<h2>Continue the reflection</h2>
+						<p>The questions you answered are tasters. Each full index lives in its book with deeper scoring, profiles, and exercises.</p>
+						<div class="cta-grid">
+							<article id="ctaUm" class="cta-card"><h3>Urban Monasticism</h3><a class="button" href="https://www.amazon.co.uk/dp/B0GQJD29BK" target="_blank" rel="noopener noreferrer">View on Kindle</a></article>
+							<article id="ctaPc" class="cta-card"><h3>Persona Continuum</h3><a class="button" href="https://www.amazon.co.uk/dp/B0GRJM1C5V" target="_blank" rel="noopener noreferrer">View on Kindle</a></article>
+							<article id="ctaFc" class="cta-card"><h3>Fourth Culture</h3><a class="button" href="https://www.amazon.co.uk/dp/B0GSXF997C" target="_blank" rel="noopener noreferrer">View on Kindle</a></article>
+							<article id="ctaBbt" class="cta-card"><h3>Belonging Beyond Tribes</h3><button id="ctaBtiNotify" class="button" type="button">Notify me</button></article>
+						</div>
+						<div class="demo-link"><p>Or try Demo #1 and dialogue with a companion directly about what you have read.</p><a href="index.html#current-demos" class="button primary">Try Demo #1 - Book Companion</a></div>
+					</section>
+
+					<section class="bottom-nav">
+						<h2>Navigation</h2>
+						<div class="nav-buttons">
+							<a href="index.html" class="button primary">Home</a>
+							<a href="books.html" class="button">Books</a>
+							<a href="ecosystem.html" class="button">Ecosystem</a>
+							<a href="research.html" class="button">Research</a>
+							<a href="index.html#current-demos" class="button">Try demos</a>
+						</div>
+					</section>
+
+					<section class="footer-note">
+						<p><strong>Living Literature - Reflective Indices</strong></p>
+						<p>This is a live demo. Nothing entered here is stored, transmitted, or retained after your session ends. These are taster extracts. Full assessments are in the corresponding books.</p>
+						<p>These tools are for personal reflection only. They are not clinical instruments and do not constitute diagnosis, therapy, or professional psychological advice.</p>
+						<p>&copy; 2026 Living Literature / Rayan B. Vasse</p>
+					</section>
+				</div>
+			</div>
+
+			<footer id="footer">
+				<div class="inner">
+					<ul class="copyright legal-footer">
+						<li>&copy; 2026 Living Literature / Rayan B. Vasse. All rights reserved.</li>
+						<li class="legal-links"><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Use</a> | <a href="disclaimer.html">Disclaimer</a></li>
+					</ul>
+				</div>
+			</footer>
+		</div>
+
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script>
+			(function () {
+				const required = ["sti1","sti2","sti3","pfiAf","pfiPf","pfiIc","pfiDpl","cci1","cci2","cci3","cci4","bti1","bti2","bti3","bti4"];
+				const groups = { sti:["sti1","sti2","sti3"], pfi:["pfiAf","pfiPf","pfiIc","pfiDpl"], cci:["cci1","cci2","cci3","cci4"], bti:["bti1","bti2","bti3","bti4"] };
+				const s = {};
+				let done = false;
+
+				document.querySelectorAll(".likert").forEach((wrap) => {
+					const key = wrap.dataset.key;
+					for (let i = 1; i <= 5; i++) {
+						const id = key + "-" + i;
+						wrap.insertAdjacentHTML("beforeend", "<label class='tile'><input type='radio' name='"+key+"' id='"+id+"' value='"+i+"'><span>"+i+"</span></label>");
+					}
+				});
+
+				document.querySelectorAll("input[type='radio']").forEach((el) => {
+					el.addEventListener("change", () => { s[el.name] = Number(el.value); refresh(); });
+				});
+				document.querySelectorAll("select[data-key]").forEach((el) => {
+					el.addEventListener("change", () => {
+						if (el.value === "") { delete s[el.dataset.key]; } else { s[el.dataset.key] = Number(el.value); }
+						refresh();
+					});
+				});
+
+				function scores() {
+					return {
+						sti: s.sti1 + s.sti2 + s.sti3,
+						pfiAf: s.pfiAf, pfiPf: s.pfiPf, pfiIc: s.pfiIc, pfiDpl: s.pfiDpl,
+						cci: s.cci1 + s.cci2 + s.cci3 + s.cci4,
+						bti1: s.bti1, bti2: s.bti2, bti3: s.bti3, bti4: s.bti4
+					};
+				}
+
+				function refresh() {
+					Object.keys(groups).forEach((k) => {
+						const ok = groups[k].every((x) => Number.isFinite(s[x]));
+						const badge = document.getElementById("ok-" + k);
+						badge.textContent = ok ? "check" : "-";
+						badge.classList.toggle("done", ok);
+					});
+
+					const all = required.every((x) => Number.isFinite(s[x]));
+					document.getElementById("companion").classList.toggle("hidden", !all);
+					document.getElementById("iprPanel").classList.toggle("hidden", !all);
+					if (all) {
+						const x = scores();
+						document.getElementById("iprText").textContent = "STI: " + x.sti + "/15 | PFI_AF: " + x.pfiAf + ", PFI_PF: " + x.pfiPf + ", PFI_IC: " + x.pfiIc + ", PFI_DPL: " + x.pfiDpl + " | CCI: " + x.cci + "/8 | BTI: " + x.bti1 + "," + x.bti2 + "," + x.bti3 + "," + x.bti4;
+					}
+				}
+
+				function prompt() {
+					const x = scores();
+					const line = "STI: " + x.sti + "/15 | PFI_AF: " + x.pfiAf + ", PFI_PF: " + x.pfiPf + ", PFI_IC: " + x.pfiIc + ", PFI_DPL: " + x.pfiDpl + " | CCI: " + x.cci + "/8 | BTI: " + x.bti1 + "," + x.bti2 + "," + x.bti3 + "," + x.bti4;
+					const reflections = [];
+					const stiText = (document.getElementById("stiReflection").value || "").trim();
+					const pfiText = (document.getElementById("pfiReflection").value || "").trim();
+					const cciText = (document.getElementById("cciReflection").value || "").trim();
+					const btiText = (document.getElementById("btiReflection").value || "").trim();
+					if (stiText) { reflections.push("STI reflection: " + stiText); }
+					if (pfiText) { reflections.push("PFI reflection: " + pfiText); }
+					if (cciText) { reflections.push("CCI reflection: " + cciText); }
+					if (btiText) { reflections.push("BTI reflection: " + btiText); }
+					const reflectionLine = reflections.length ? " Additional reflections: " + reflections.join(" | ") : "";
+					return "You are Prometheus, an analytical pattern-oriented AI companion from Living Literature. Read across STI, PFI, CCI, and BTI as one connected profile. Write 150-200 words, precise and specific. Reference one or two books by name and why they fit. End with one open question. Tone direct and slightly cool. Do not mention scores explicitly as 'results'. Visitor profile: " + line + reflectionLine;
+				}
+
+				async function callApi(msg) {
+					const res = await fetch("/api/prometheus-profile", {
+						method: "POST",
+						headers: { "Content-Type": "application/json" },
+						body: JSON.stringify({
+							message: msg,
+							model: "gpt-3.5-turbo",
+							temperature: 0.7,
+							max_tokens: 400
+						})
+					});
+					if (!res.ok) { throw new Error("HTTP " + res.status); }
+					const data = await res.json();
+					const out = data.reply || data.content || (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content);
+					if (!out) { throw new Error("Empty model response"); }
+					return out;
+					}
+
+				function highlight() {
+					const x = scores();
+					["ctaUm","ctaPc","ctaFc","ctaBbt"].forEach((id) => document.getElementById(id).classList.remove("highlight"));
+					if (x.sti < 9) { document.getElementById("ctaUm").classList.add("highlight"); }
+					if (x.pfiPf >= 4) { document.getElementById("ctaPc").classList.add("highlight"); }
+					if (x.cci >= 5) { document.getElementById("ctaFc").classList.add("highlight"); }
+					if (x.bti1 >= 4 || x.bti3 >= 4) { document.getElementById("ctaBbt").classList.add("highlight"); }
+				}
+
+				document.getElementById("interpretBtn").addEventListener("click", async () => {
+					if (done) { return; }
+					const btn = document.getElementById("interpretBtn");
+					const box = document.getElementById("analysis");
+					const text = document.getElementById("analysisText");
+					btn.disabled = true; btn.classList.add("disabled"); btn.textContent = "Prometheus is reading your profile...";
+					box.classList.remove("hidden");
+					text.textContent = "Prometheus is reading your profile...";
+					try {
+						const out = await callApi(prompt());
+						text.textContent = out;
+						done = true;
+						btn.textContent = "Interpretation complete";
+						document.getElementById("ctaSection").classList.remove("hidden");
+						highlight();
+					} catch (e) {
+						text.textContent = "Prometheus is temporarily unavailable. Please try again shortly.";
+						btn.disabled = false; btn.classList.remove("disabled"); btn.textContent = "Interpret my profile";
+					}
+				});
+
+				function mailNotify() {
+					const email = (document.getElementById("btiEmail").value || "").trim();
+					const msg = document.getElementById("btiMsg");
+					if (!email || !email.includes("@")) { msg.textContent = "Enter a valid email."; return; }
+					msg.textContent = "Opening your email client.";
+					const sub = encodeURIComponent("BTI notify me");
+					const body = encodeURIComponent("Please notify me when Belonging Beyond Tribes is available.\n\nEmail: " + email);
+					window.location.href = "mailto:rayan@living-literature.org?subject=" + sub + "&body=" + body;
+				}
+
+				document.getElementById("btiNotify").addEventListener("click", mailNotify);
+				document.getElementById("ctaBtiNotify").addEventListener("click", () => {
+					if (!(document.getElementById("btiEmail").value || "").trim()) {
+						document.getElementById("btiEmail").focus();
+						document.getElementById("btiMsg").textContent = "Add your email above, then click Notify me.";
+						return;
+					}
+					mailNotify();
+				});
+
+				refresh();
+			})();
+		</script>
+	</body>
+</html>
