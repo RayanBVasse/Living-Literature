@@ -1,8 +1,10 @@
 from http.server import BaseHTTPRequestHandler
 import json
 import os
+import re
 import urllib.request
 import urllib.error
+import urllib.parse
 
 # ---------------------------------------------------------------------------
 # Modular prompt components
@@ -60,6 +62,81 @@ CCI_LABELS = {
     "often": "often",
 }
 
+VALID_NUMERIC_SCORES = {1, 2, 3, 4, 5}
+
+
+# ---------------------------------------------------------------------------
+# Security helpers
+# ---------------------------------------------------------------------------
+
+def _verify_recaptcha(token):
+    """Verify reCAPTCHA v3 token. Returns score (0.0-1.0) or None on failure."""
+    secret = os.environ.get("RECAPTCHA_SECRET_KEY", "")
+    if not secret:
+        return 1.0  # Skip verification if no secret configured (dev mode)
+    if not token:
+        return None
+
+    try:
+        data = urllib.parse.urlencode({
+            "secret": secret,
+            "response": token
+        }).encode()
+        req = urllib.request.Request(
+            "https://www.google.com/recaptcha/api/siteverify",
+            data=data,
+            method="POST"
+        )
+        with urllib.request.urlopen(req, timeout=5) as resp:
+            result = json.loads(resp.read())
+            if result.get("success"):
+                return result.get("score", 0.0)
+            return None
+    except Exception:
+        return 1.0  # Fail open — don't block users if Google is down
+
+
+def _strip_html(text):
+    """Remove HTML tags from text."""
+    return re.sub(r'<[^>]+>', '', text)
+
+
+def _sanitize_indices(indices_data):
+    """Sanitize and validate indices data. Returns cleaned dict."""
+    known_keys = ["sti", "pfi", "cci", "bti"]
+    cleaned = {}
+    for key in known_keys:
+        if key not in indices_data:
+            continue
+        idx = indices_data[key]
+        if not isinstance(idx, dict):
+            continue
+        clean_idx = {}
+        # Sanitize reflection: strip HTML, cap at 500 chars
+        reflection = str(idx.get("reflection") or "")
+        clean_idx["reflection"] = _strip_html(reflection)[:500]
+        # Sanitize scores
+        raw_scores = idx.get("scores") or []
+        if key == "cci":
+            # CCI scores are strings — only allow known labels
+            clean_idx["scores"] = [
+                s for s in raw_scores
+                if isinstance(s, str) and s in CCI_LABELS
+            ]
+        else:
+            # Numeric scores 1-5
+            valid = []
+            for s in raw_scores:
+                try:
+                    n = int(s)
+                    if n in VALID_NUMERIC_SCORES:
+                        valid.append(n)
+                except (ValueError, TypeError):
+                    pass
+            clean_idx["scores"] = valid
+        cleaned[key] = clean_idx
+    return cleaned
+
 
 # ---------------------------------------------------------------------------
 # Handler
@@ -82,12 +159,22 @@ class handler(BaseHTTPRequestHandler):
         })
 
     def do_POST(self):
+        content_length = int(self.headers.get("Content-Length", 0))
+        if content_length > 10000:
+            self._send_json(413, {"error": "Request too large"})
+            return
+
         try:
-            content_length = int(self.headers.get("Content-Length", 0))
             raw_body = self.rfile.read(content_length)
             body = json.loads(raw_body)
         except Exception:
             self._send_json(400, {"error": "Invalid JSON body"})
+            return
+
+        recaptcha_token = body.get("recaptcha_token", "")
+        score = _verify_recaptcha(recaptcha_token)
+        if score is None or score < 0.3:
+            self._send_json(403, {"error": "Verification failed. Please try again."})
             return
 
         mode = body.get("mode", "")
@@ -116,11 +203,12 @@ class handler(BaseHTTPRequestHandler):
         if companion not in CHARACTERS:
             companion = "prometheus"
 
-        indices_data = body.get("indices") or {}
+        raw_indices = body.get("indices") or {}
+        indices_data = _sanitize_indices(raw_indices)
         indices_received = [k for k in ["sti", "pfi", "cci", "bti"] if k in indices_data]
 
         if not indices_received:
-            self._send_json(400, {"error": "No index data provided"})
+            self._send_json(400, {"error": "No valid index data provided"})
             return
 
         system_prompt = self._build_indices_prompt(companion, indices_data)

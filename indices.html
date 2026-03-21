@@ -93,7 +93,9 @@
 				.nav-buttons { display: grid; grid-template-columns: 1fr; }
 				.full-note-book { flex-direction: column; align-items: flex-start; }
 			}
+			.grecaptcha-badge { visibility: hidden; }
 		</style>
+		<script src="https://www.google.com/recaptcha/api.js?render=6Le9lplsAAAAAFHvmzauY-oUL3eIfuUo32n3em3g"></script>
 	</head>
 	<body class="is-preload">
 		<div id="wrapper">
@@ -239,7 +241,7 @@
 						<h2>Your partial IPR is ready</h2>
 						<p>Choose a companion to interpret your profile. Prometheus reads patterns analytically. Selene reads with emotional depth. One is active today.</p>
 						<div class="companion-grid">
-							<article class="companion-card"><h3>Prometheus</h3><p class="meta">Analytical, pattern-oriented, concept-first.</p><button id="interpretBtn" class="button primary" type="button">Interpret my profile</button></article>
+							<article class="companion-card"><h3>Prometheus</h3><p class="meta">Analytical, pattern-oriented, concept-first.</p><button id="interpretBtn" class="button primary" type="button">Interpret my profile</button><br><small style="color:#999;font-size:0.7em;">Protected by reCAPTCHA. <a href="https://policies.google.com/privacy" style="color:#999;">Privacy</a> · <a href="https://policies.google.com/terms" style="color:#999;">Terms</a></small></article>
 							<article class="companion-card"><h3>Selene</h3><p class="meta">Intuitive, empathic, resonant.</p><button type="button" class="button disabled" disabled title="Selene will be available in a future update">Coming soon</button><p class="meta" style="margin-top:.45rem;">Currently offline during testing.</p></article>
 						</div>
 						<div id="analysis" class="analysis hidden">
@@ -269,6 +271,7 @@
 								<h3>Prometheus</h3>
 								<p class="meta">Analytical, pattern-oriented, concept-first.</p>
 								<button id="miniPrometheusBtn" class="button primary" type="button">Ask Prometheus</button>
+								<br><small style="color:#999;font-size:0.7em;">Protected by reCAPTCHA. <a href="https://policies.google.com/privacy" style="color:#999;">Privacy</a> · <a href="https://policies.google.com/terms" style="color:#999;">Terms</a></small>
 							</article>
 							<article class="companion-card">
 								<h3>Selene</h3>
@@ -406,6 +409,12 @@
 				}
 
 				async function callApi(payload) {
+					const token = await new Promise((resolve) => {
+						grecaptcha.ready(function() {
+							grecaptcha.execute('6Le9lplsAAAAAFHvmzauY-oUL3eIfuUo32n3em3g', {action: 'submit'}).then(resolve);
+						});
+					});
+					payload.recaptcha_token = token;
 					const res = await fetch("/api/interpret", {
 						method: "POST",
 						headers: { "Content-Type": "application/json" },

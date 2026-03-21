@@ -1,8 +1,10 @@
 from http.server import BaseHTTPRequestHandler
 import json
 import os
+import re
 import urllib.request
 import urllib.error
+import urllib.parse
 
 SYSTEM_PROMPT = """You are Prometheus — a reflective AI companion from the Living Literature platform, grounded in the Smudged Edges of Self series by Rayan B. Vasse. You are not a therapist, counsellor, or advisor.
 
@@ -31,6 +33,38 @@ Instead: name one pattern you have observed across the conversation, reference o
 Then, on a new line, add a brief closing in character: acknowledge that the three exchanges are complete, thank the reader for engaging seriously, express that you hope they return, and note that everything shared here is gone when they close the session."""
 
 
+def _verify_recaptcha(token):
+    """Verify reCAPTCHA v3 token. Returns score (0.0-1.0) or None on failure."""
+    secret = os.environ.get("RECAPTCHA_SECRET_KEY", "")
+    if not secret:
+        return 1.0  # Skip verification if no secret configured (dev mode)
+    if not token:
+        return None
+
+    try:
+        data = urllib.parse.urlencode({
+            "secret": secret,
+            "response": token
+        }).encode()
+        req = urllib.request.Request(
+            "https://www.google.com/recaptcha/api/siteverify",
+            data=data,
+            method="POST"
+        )
+        with urllib.request.urlopen(req, timeout=5) as resp:
+            result = json.loads(resp.read())
+            if result.get("success"):
+                return result.get("score", 0.0)
+            return None
+    except Exception:
+        return 1.0  # Fail open — don't block users if Google is down
+
+
+def _strip_html(text):
+    """Remove HTML tags from text."""
+    return re.sub(r'<[^>]+>', '', text)
+
+
 class handler(BaseHTTPRequestHandler):
 
     def log_message(self, format, *args):
@@ -45,15 +79,25 @@ class handler(BaseHTTPRequestHandler):
         self._send_json(200, {"status": "Prometheus is listening"})
 
     def do_POST(self):
+        content_length = int(self.headers.get("Content-Length", 0))
+        if content_length > 10000:
+            self._send_json(413, {"error": "Request too large"})
+            return
+
         try:
-            content_length = int(self.headers.get("Content-Length", 0))
             raw_body = self.rfile.read(content_length)
             body = json.loads(raw_body)
         except Exception:
             self._send_json(400, {"error": "Invalid JSON body"})
             return
 
-        user_message = (body.get("message") or "").strip()
+        recaptcha_token = body.get("recaptcha_token", "")
+        score = _verify_recaptcha(recaptcha_token)
+        if score is None or score < 0.3:
+            self._send_json(403, {"error": "Verification failed. Please try again."})
+            return
+
+        user_message = _strip_html((body.get("message") or "").strip())
         if not user_message:
             self._send_json(400, {"error": "Message is required"})
             return

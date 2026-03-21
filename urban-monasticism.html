@@ -215,7 +215,9 @@
 					max-width: 220px;
 				}
 			}
+			.grecaptcha-badge { visibility: hidden; }
 		</style>
+		<script src="https://www.google.com/recaptcha/api.js?render=6Le9lplsAAAAAFHvmzauY-oUL3eIfuUo32n3em3g"></script>
 	</head>
 
 	<!-- Google tag (gtag.js) -->
@@ -302,6 +304,7 @@
 							<div class="demo-form">
 								<input type="text" id="userInput" placeholder="Enter your reflection...then click 'Talk to Selene'" />
 								<button onclick="submitSeleneInput()">Talk to Selene</button>
+								<br><small style="color:#999;font-size:0.7em;">Protected by reCAPTCHA. <a href="https://policies.google.com/privacy" style="color:#999;">Privacy</a> · <a href="https://policies.google.com/terms" style="color:#999;">Terms</a></small>
 							</div>
 
 							<div id="responseArea" class="ai-response">I'm Selene - a reflective companion grounded in the themes of Urban Monasticism. I'm an AI, not a therapist or counsellor. I don't store what you share with me, and I won't remember this conversation next time. I'm here to extend the reflective life of the book - nothing more, nothing less. If you're going through something hard, please reach out to someone who can genuinely help. What's on your mind?</div>

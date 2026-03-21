@@ -215,7 +215,9 @@
 					max-width: 220px;
 				}
 			}
+			.grecaptcha-badge { visibility: hidden; }
 		</style>
+		<script src="https://www.google.com/recaptcha/api.js?render=6Le9lplsAAAAAFHvmzauY-oUL3eIfuUo32n3em3g"></script>
 	</head>
 
 	<!-- Google tag (gtag.js) -->
@@ -300,6 +302,7 @@
 							<div class="demo-form">
 								<input type="text" id="userInput" placeholder="Enter your reflection...and click 'Talk to Prometheus'" />
 								<button onclick="submitPrometheusInput()">Talk to Prometheus</button>
+								<br><small style="color:#999;font-size:0.7em;">Protected by reCAPTCHA. <a href="https://policies.google.com/privacy" style="color:#999;">Privacy</a> · <a href="https://policies.google.com/terms" style="color:#999;">Terms</a></small>
 							</div>
 
 							<div id="responseArea" class="ai-response">I'm Prometheus - a reflective companion grounded in the themes of The Persona Continuum. I'm an AI, not a therapist or counsellor. I don't retain memory between our conversations, and I don't know you as an individual. What I can do is think with you about the ideas in this book. If anything we discuss brings up something difficult, please consider speaking with someone who can actually support you. Ready when you are.</div>
