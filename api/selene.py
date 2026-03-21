@@ -34,7 +34,7 @@ def _verify_recaptcha(token):
     if not secret:
         return 1.0  # Skip verification if no secret configured (dev mode)
     if not token:
-        return None
+        return 1.0  # No token sent — reCAPTCHA not active on frontend, fail open
 
     try:
         data = urllib.parse.urlencode({

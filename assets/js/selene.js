@@ -4,6 +4,23 @@
     var exchangeCount = 0;
     var MAX_EXCHANGES = 3;
 
+    // Try to get a reCAPTCHA v3 token; resolve with '' on any failure
+    function getToken() {
+        return new Promise(function (resolve) {
+            var timer = setTimeout(function () { resolve(''); }, 5000);
+            function done(t) { clearTimeout(timer); resolve(t || ''); }
+            try {
+                grecaptcha.ready(function () {
+                    try {
+                        grecaptcha.execute(SITE_KEY, { action: 'submit' })
+                            .then(done)
+                            .catch(function () { done(''); });
+                    } catch (e) { done(''); }
+                });
+            } catch (e) { done(''); }
+        });
+    }
+
     function submitSeleneInput() {
         var input = document.getElementById('userInput');
         var responseArea = document.getElementById('responseArea');
@@ -15,26 +32,11 @@
         input.disabled = true;
         responseArea.textContent = 'Selene is listening\u2026';
 
-        var captchaTimer;
-        var settled = false;
-
-        function onError() {
-            if (settled) return;
-            settled = true;
-            clearTimeout(captchaTimer);
-            responseArea.textContent = 'Selene is temporarily unavailable. Please try again shortly.';
-            input.disabled = false;
-        }
-
-        function doFetch(token) {
-            if (settled) return;
-            settled = true;
-            clearTimeout(captchaTimer);
-
+        getToken().then(function (token) {
             fetch('/api/selene', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: message, history: history, recaptcha_token: token || '' })
+                body: JSON.stringify({ message: message, history: history, recaptcha_token: token })
             })
             .then(function (res) { return res.json(); })
             .then(function (data) {
@@ -59,22 +61,7 @@
                 responseArea.textContent = 'Selene is temporarily unavailable. Please try again shortly.';
                 input.disabled = false;
             });
-        }
-
-        // Safety net: if reCAPTCHA doesn't settle in 10s, recover
-        captchaTimer = setTimeout(function () {
-            if (!settled) onError();
-        }, 10000);
-
-        try {
-            grecaptcha.ready(function () {
-                grecaptcha.execute(SITE_KEY, { action: 'submit' })
-                    .then(doFetch)
-                    .catch(onError);
-            });
-        } catch (e) {
-            onError();
-        }
+        });
     }
 
     window.submitSeleneInput = submitSeleneInput;
