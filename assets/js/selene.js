@@ -15,12 +15,22 @@
         input.disabled = true;
         responseArea.textContent = 'Selene is listening\u2026';
 
+        var captchaTimer;
+        var settled = false;
+
         function onError() {
+            if (settled) return;
+            settled = true;
+            clearTimeout(captchaTimer);
             responseArea.textContent = 'Selene is temporarily unavailable. Please try again shortly.';
             input.disabled = false;
         }
 
         function doFetch(token) {
+            if (settled) return;
+            settled = true;
+            clearTimeout(captchaTimer);
+
             fetch('/api/selene', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -41,11 +51,20 @@
                         input.disabled = false;
                     }
                 } else {
-                    onError();
+                    responseArea.textContent = 'Selene is temporarily unavailable. Please try again shortly.';
+                    input.disabled = false;
                 }
             })
-            .catch(onError);
+            .catch(function () {
+                responseArea.textContent = 'Selene is temporarily unavailable. Please try again shortly.';
+                input.disabled = false;
+            });
         }
+
+        // Safety net: if reCAPTCHA doesn't settle in 10s, recover
+        captchaTimer = setTimeout(function () {
+            if (!settled) onError();
+        }, 10000);
 
         try {
             grecaptcha.ready(function () {

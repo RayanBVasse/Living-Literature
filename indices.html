@@ -386,10 +386,15 @@
 				}
 
 				async function callApi(payload) {
-					const token = await new Promise((resolve) => {
-						grecaptcha.ready(function() {
-							grecaptcha.execute('6Le9lplsAAAAAFHvmzauY-oUL3eIfuUo32n3em3g', {action: 'submit'}).then(resolve);
-						});
+					const token = await new Promise((resolve, reject) => {
+						const t = setTimeout(() => reject(new Error("reCAPTCHA timeout")), 10000);
+						try {
+							grecaptcha.ready(function() {
+								grecaptcha.execute('6Le9lplsAAAAAFHvmzauY-oUL3eIfuUo32n3em3g', {action: 'submit'})
+									.then(tok => { clearTimeout(t); resolve(tok); })
+									.catch(e => { clearTimeout(t); reject(e); });
+							});
+						} catch(e) { clearTimeout(t); reject(e); }
 					});
 					payload.recaptcha_token = token;
 					const res = await fetch("/api/interpret", {
