@@ -15,44 +15,47 @@
         input.disabled = true;
         responseArea.textContent = 'Selene is listening\u2026';
 
-        grecaptcha.ready(function () {
-            grecaptcha.execute(SITE_KEY, { action: 'submit' }).then(function (token) {
-                var payload = {
-                    message: message,
-                    history: history,
-                    recaptcha_token: token
-                };
+        function onError() {
+            responseArea.textContent = 'Selene is temporarily unavailable. Please try again shortly.';
+            input.disabled = false;
+        }
 
-                fetch('/api/selene', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                })
-                .then(function (res) { return res.json(); })
-                .then(function (data) {
-                    if (data.reply) {
-                        history.push({ role: 'user', content: message });
-                        history.push({ role: 'assistant', content: data.reply });
-                        responseArea.textContent = data.reply;
-                        exchangeCount++;
-                        input.value = '';
-                        if (exchangeCount >= MAX_EXCHANGES) {
-                            input.disabled = true;
-                            input.placeholder = 'This session has ended. Refresh to start again.';
-                        } else {
-                            input.disabled = false;
-                        }
+        function doFetch(token) {
+            fetch('/api/selene', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: message, history: history, recaptcha_token: token || '' })
+            })
+            .then(function (res) { return res.json(); })
+            .then(function (data) {
+                if (data.reply) {
+                    history.push({ role: 'user', content: message });
+                    history.push({ role: 'assistant', content: data.reply });
+                    responseArea.textContent = data.reply;
+                    exchangeCount++;
+                    input.value = '';
+                    if (exchangeCount >= MAX_EXCHANGES) {
+                        input.disabled = true;
+                        input.placeholder = 'This session has ended. Refresh to start again.';
                     } else {
-                        responseArea.textContent = 'Selene is temporarily unavailable. Please try again shortly.';
                         input.disabled = false;
                     }
-                })
-                .catch(function () {
-                    responseArea.textContent = 'Selene is temporarily unavailable. Please try again shortly.';
-                    input.disabled = false;
-                });
+                } else {
+                    onError();
+                }
+            })
+            .catch(onError);
+        }
+
+        try {
+            grecaptcha.ready(function () {
+                grecaptcha.execute(SITE_KEY, { action: 'submit' })
+                    .then(doFetch)
+                    .catch(onError);
             });
-        });
+        } catch (e) {
+            onError();
+        }
     }
 
     window.submitSeleneInput = submitSeleneInput;
